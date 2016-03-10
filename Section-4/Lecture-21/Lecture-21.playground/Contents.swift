@@ -58,5 +58,3 @@ var b:Int = 8
 print("The pruduct of \(a) and \(b) is \(a * Double(b))")
 
 
-
-
