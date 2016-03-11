@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     var activeIndex = 0
     
     
-    func animatePNGImage() {
+    func runAnimation() {
         
         if activeIndex < allImages.count - 1 {
             
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
         
         timer.invalidate()
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("animatePNGImage"), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("runAnimation"), userInfo: nil, repeats: true)
     }
     
     
@@ -76,7 +76,7 @@ class ViewController: UIViewController {
         
         activeIndex = -1
         
-        animatePNGImage()
+        runAnimation()
         
         self.pauseButton.enabled = false
         
@@ -89,6 +89,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.alienImage.image = UIImage(named: allImages[activeIndex])
+        
     }
 
     
@@ -97,7 +98,33 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         
     }
+    
+    
+    /*override func viewDidLayoutSubviews() {
+        
+        super.viewDidLayoutSubviews()
+        
+        //alienImage.center = CGPointMake(alienImage.center.x - alienImage.frame.size.width, alienImage.center.y)
+        
+        alienImage.alpha = 0
+        
+    }*/
 
-
+    
+    /*override func viewDidAppear(animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+        let tempSelf = self
+        
+        UIView.animateWithDuration(1) { () -> Void in
+            
+            //self.alienImage.center = CGPointMake(self.alienImage.center.x + self.alienImage.frame.size.width, self.alienImage.center.y)
+            
+            tempSelf.alienImage.alpha = 1
+        }
+    }*/
+    
+    
 }
 
