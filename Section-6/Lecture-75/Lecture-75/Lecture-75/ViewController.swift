@@ -8,14 +8,24 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
+    
     @IBOutlet weak var mapView: MKMapView!
+    
+    var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
         
         let latitude:CLLocationDegrees = 48.281773
         
@@ -68,6 +78,31 @@ class ViewController: UIViewController, MKMapViewDelegate {
         annotation.subtitle = "One day I'll go here..."
         
         mapView.addAnnotation(annotation)
+        
+    }
+    
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        print(locations)
+        
+        let userLocation:CLLocation = locations[0]
+        
+        let latitude = userLocation.coordinate.latitude
+        
+        let longitude = userLocation.coordinate.longitude
+        
+        let latDelta:CLLocationDegrees = 0.02
+        
+        let lonDelta:CLLocationDegrees = 0.02
+        
+        let mapSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
+        
+        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(location, mapSpan)
+        
+        self.mapView.setRegion(region, animated: false)
         
     }
     

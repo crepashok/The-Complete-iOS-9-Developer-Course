@@ -12,6 +12,7 @@
 		5F72C1661C92FF4B00A5C9FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F72C1641C92FF4B00A5C9FF /* Main.storyboard */; };
 		5F72C1681C92FF4B00A5C9FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F72C1671C92FF4B00A5C9FF /* Assets.xcassets */; };
 		5F72C16B1C92FF4B00A5C9FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F72C1691C92FF4B00A5C9FF /* LaunchScreen.storyboard */; };
+		5F72C1731C96930300A5C9FF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F72C1721C96930300A5C9FF /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		5F72C1671C92FF4B00A5C9FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F72C16A1C92FF4B00A5C9FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F72C16C1C92FF4B00A5C9FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F72C1721C96930300A5C9FF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F72C1731C96930300A5C9FF /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,14 +57,23 @@
 		5F72C15F1C92FF4B00A5C9FF /* Lecture-75 */ = {
 			isa = PBXGroup;
 			children = (
+				5F72C1741C96931600A5C9FF /* Supporting Files */,
 				5F72C1601C92FF4B00A5C9FF /* AppDelegate.swift */,
 				5F72C1621C92FF4B00A5C9FF /* ViewController.swift */,
 				5F72C1641C92FF4B00A5C9FF /* Main.storyboard */,
 				5F72C1671C92FF4B00A5C9FF /* Assets.xcassets */,
 				5F72C1691C92FF4B00A5C9FF /* LaunchScreen.storyboard */,
-				5F72C16C1C92FF4B00A5C9FF /* Info.plist */,
 			);
 			path = "Lecture-75";
+			sourceTree = "<group>";
+		};
+		5F72C1741C96931600A5C9FF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5F72C1721C96930300A5C9FF /* CoreLocation.framework */,
+				5F72C16C1C92FF4B00A5C9FF /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
