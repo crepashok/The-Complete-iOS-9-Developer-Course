@@ -33,6 +33,42 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         mapView.setRegion(region, animated: true)
         
+        let annotation = MKPointAnnotation()
+        
+        annotation.coordinate = location
+        
+        annotation.title = "SharpMinds"
+        
+        annotation.subtitle = "IT Company"
+        
+        mapView.addAnnotation(annotation)
+        
+        let uilpgr = UILongPressGestureRecognizer(target: self, action: "action:")
+        
+        uilpgr.minimumPressDuration = 2
+        
+        mapView.addGestureRecognizer(uilpgr)
+    }
+    
+    
+    func action(gestureRecogniser:UIGestureRecognizer) {
+    
+        print(gestureRecogniser)
+        
+        let touchPoint = gestureRecogniser.locationInView(self.mapView)
+        
+        let newCoordinate:CLLocationCoordinate2D = mapView.convertPoint(touchPoint, toCoordinateFromView: self.mapView)
+        
+        let annotation = MKPointAnnotation()
+        
+        annotation.coordinate = newCoordinate
+        
+        annotation.title = "New Place"
+        
+        annotation.subtitle = "One day I'll go here..."
+        
+        mapView.addAnnotation(annotation)
+        
     }
     
 
