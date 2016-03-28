@@ -20,11 +20,11 @@ class ViewController: UIViewController {
             
             /*let newUser = NSEntityDescription.insertNewObjectForEntityForName("Users", inManagedObjectContext: context)
             
-            newUser.setValue("Rob", forKey: "username")
+            newUser.setValue("Tommy", forKey: "username")
             
-            newUser.setValue("pass123", forKey: "password")
+            newUser.setValue("pppass123", forKey: "password")
             
-            newUser.setValue("Ivanov", forKey: "surname")
+            newUser.setValue("Yurievich", forKey: "surname")
             
             do {
             
@@ -38,6 +38,8 @@ class ViewController: UIViewController {
             
             let request = NSFetchRequest(entityName: "Users")
             
+            //request.predicate = NSPredicate(format: "username = %@", "Tommy")
+            
             request.returnsObjectsAsFaults = false
             
             do {
@@ -48,9 +50,25 @@ class ViewController: UIViewController {
                 
                     for result in results as! [NSManagedObject] {
                         
-                        print(result.valueForKey("username")!)
+                        context.deleteObject(result)
                         
-                        print(result.valueForKey("password")!)
+                        //result.setValue("Raphie", forKey: "username")
+                        
+                        /*do {
+                            
+                            try context.save()
+                            
+                        } catch {
+                            
+                            print("There was a update entity problem!")
+                            
+                        }*/
+                        
+                        if let username = result.valueForKey("username") as? String {
+                            
+                            print("returned value: \(username)")
+                        
+                        }
                         
                     }
                     
