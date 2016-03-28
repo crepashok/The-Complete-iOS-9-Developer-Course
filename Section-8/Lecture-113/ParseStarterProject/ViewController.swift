@@ -15,26 +15,49 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let product = PFObject(className:"Products")
+        /*let product = PFObject(className:"Products")
         
-        product["name"] = "Pizza"
+        product["name"] = "Ice cream"
         
-        product["description"] = "Deliciously cheesy"
+        product["description"] = "Tutti Fruitti"
         
-        product["price"] = 9.99
+        product["price"] = 4.99
         
         product.saveInBackgroundWithBlock {(success: Bool, error: NSError?) -> Void in
             
             if (success) {
                 
-                print("Successfull")
+                print("Object was saved with ID \(product.objectId)")
                 
             } else {
                 
                 print("Failed: \(error?.localizedDescription)")
                 
             }
+        }*/
+        
+        let query = PFQuery(className: "Products")
+        
+        query.getObjectInBackgroundWithId("uFuweBq1Y9") { (object: PFObject?, error: NSError?) -> Void in
+            
+            if error != nil {
+            
+                print("Query error: \(error?.localizedDescription)")
+                
+            } else if let product = object {
+                
+                product["description"] = "Rocky Road"
+                
+                product["price"] = 5.99
+                
+                product.saveInBackground()
+                
+                print(product.objectForKey("description"))
+                
+            }
+            
         }
         
     }
+    
 }
