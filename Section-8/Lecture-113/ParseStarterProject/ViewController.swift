@@ -18,8 +18,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
-        print("Image selected")
-        
         self.dismissViewControllerAnimated(true, completion: nil)
         
         imageView.image = image
@@ -44,8 +42,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        
         
         /*let product = PFObject(className:"Products")
         
