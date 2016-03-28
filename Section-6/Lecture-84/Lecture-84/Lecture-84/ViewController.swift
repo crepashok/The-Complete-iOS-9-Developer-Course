@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var slider: UISlider!
     
+    @IBOutlet weak var scrubSlider: UISlider!
     
     override func viewDidLoad() {
         
@@ -36,6 +37,10 @@ class ViewController: UIViewController {
                 try player = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: audioPath))
                 
                 player.volume = slider.value
+                
+                scrubSlider.maximumValue = Float(player.duration)
+                
+                _ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateScrubSlider"), userInfo: nil, repeats: true)
                 
             } catch {
                 
@@ -78,5 +83,17 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func scrub(sender: UISlider) {
+        
+        player.currentTime = Double(scrubSlider.value)
+        
+    }
+    
+    
+    func updateScrubSlider() {
+    
+        scrubSlider.value = Float(player.currentTime)
+        
+    }
 }
 

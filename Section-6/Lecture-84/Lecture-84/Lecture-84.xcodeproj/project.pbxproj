@@ -13,6 +13,7 @@
 		5F16BE661CA8FFCE0034E9A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F16BE651CA8FFCE0034E9A9 /* Assets.xcassets */; };
 		5F16BE691CA8FFCE0034E9A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F16BE671CA8FFCE0034E9A9 /* LaunchScreen.storyboard */; };
 		5F16BE711CA8FFE70034E9A9 /* Feel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5F16BE701CA8FFE70034E9A9 /* Feel.mp3 */; };
+		5F16BE731CA906DE0034E9A9 /* img.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F16BE721CA906DE0034E9A9 /* img.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		5F16BE681CA8FFCE0034E9A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F16BE6A1CA8FFCE0034E9A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F16BE701CA8FFE70034E9A9 /* Feel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Feel.mp3; path = ../../../../../../../../Users/pavlocretsu/Desktop/Feel.mp3; sourceTree = "<group>"; };
+		5F16BE721CA906DE0034E9A9 /* img.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = img.jpg; path = ../../../../../../../../Users/pavlocretsu/Desktop/img.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				5F16BE701CA8FFE70034E9A9 /* Feel.mp3 */,
+				5F16BE721CA906DE0034E9A9 /* img.jpg */,
 				5F16BE5E1CA8FFCE0034E9A9 /* AppDelegate.swift */,
 				5F16BE601CA8FFCE0034E9A9 /* ViewController.swift */,
 				5F16BE621CA8FFCE0034E9A9 /* Main.storyboard */,
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F16BE731CA906DE0034E9A9 /* img.jpg in Resources */,
 				5F16BE691CA8FFCE0034E9A9 /* LaunchScreen.storyboard in Resources */,
 				5F16BE661CA8FFCE0034E9A9 /* Assets.xcassets in Resources */,
 				5F16BE711CA8FFE70034E9A9 /* Feel.mp3 in Resources */,
