@@ -15,6 +15,38 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     @IBOutlet weak var imageView: UIImageView!
     
+    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    @IBAction func pause(sender: UIBarButtonItem) {
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        //UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+    }
+    
+    @IBAction func restore(sender: AnyObject) {
+        activityIndicator.stopAnimating()
+        //UIApplication.sharedApplication().endIgnoringInteractionEvents()
+    }
+    
+    
+    @IBAction func createAlert(sender: AnyObject) {
+        
+        if #available(iOS 8.0, *) {
+            let alert = UIAlertController(title: "Hey there!", message: "Are you sure", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action) -> Void in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         

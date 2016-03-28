@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OGV-Am-5XK">
-                                <rect key="frame" x="-4" y="64" width="383" height="603"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OGV-Am-5XK">
+                                <rect key="frame" x="-4" y="64" width="383" height="544"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Qj-pd-qIP">
@@ -37,11 +37,39 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lc5-dA-qow">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="KaC-10-RG8"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem systemItem="pause" id="X3M-rp-teg">
+                                        <connections>
+                                            <action selector="pause:" destination="BYZ-38-t0r" id="Dz4-ot-cit"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="QyJ-h7-H4y"/>
+                                    <barButtonItem systemItem="action" id="Yo9-IL-yQh">
+                                        <connections>
+                                            <action selector="createAlert:" destination="BYZ-38-t0r" id="W2e-Vb-n1R"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="9JK-j0-MgY"/>
+                                    <barButtonItem systemItem="refresh" id="qgG-Vm-mqe">
+                                        <connections>
+                                            <action selector="restore:" destination="BYZ-38-t0r" id="vdT-Ie-qFw"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.97254901960784312" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Lc5-dA-qow" secondAttribute="bottom" id="9bu-Qs-HST"/>
                             <constraint firstItem="6Qj-pd-qIP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Bn8-5N-NIV"/>
                             <constraint firstItem="6Qj-pd-qIP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="I2l-ak-W5I"/>
+                            <constraint firstItem="Lc5-dA-qow" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Vg8-N4-mZW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Lc5-dA-qow" secondAttribute="trailing" constant="-20" id="XMu-F8-hMp"/>
                             <constraint firstItem="OGV-Am-5XK" firstAttribute="top" secondItem="6Qj-pd-qIP" secondAttribute="bottom" id="eZs-8z-bgT"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OGV-Am-5XK" secondAttribute="bottom" id="fCp-F8-fRl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="OGV-Am-5XK" secondAttribute="trailing" constant="-20" id="gJ5-BU-rJi"/>
