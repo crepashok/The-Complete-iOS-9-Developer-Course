@@ -10,10 +10,42 @@
 import UIKit
 import Parse
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        
+        print("Image selected")
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        imageView.image = image
+        
+    }
+    
+    
+    @IBAction func importImage(sender: UIBarButtonItem) {
+        
+        let image = UIImagePickerController()
+        
+        image.delegate = self
+        
+        image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary //UIImagePickerControllerSourceType.Camera
+        
+        image.allowsEditing = false
+        
+        self.presentViewController(image, animated: true, completion: nil)
+    }
+    
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        
         
         /*let product = PFObject(className:"Products")
         
@@ -36,7 +68,7 @@ class ViewController: UIViewController {
             }
         }*/
         
-        let query = PFQuery(className: "Products")
+        /*let query = PFQuery(className: "Products")
         
         query.getObjectInBackgroundWithId("uFuweBq1Y9") { (object: PFObject?, error: NSError?) -> Void in
             
@@ -56,7 +88,7 @@ class ViewController: UIViewController {
                 
             }
             
-        }
+        }*/
         
     }
     

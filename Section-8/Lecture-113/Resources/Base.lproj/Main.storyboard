@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,13 +15,48 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Qj-pd-qIP">
+                                <rect key="frame" x="-4" y="20" width="383" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="dY9-px-ODx"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Title" id="ARR-ui-NBB">
+                                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="b5i-sy-Eir">
+                                            <connections>
+                                                <action selector="importImage:" destination="BYZ-38-t0r" id="cti-ad-mz9"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OGV-Am-5XK">
+                                <rect key="frame" x="-4" y="64" width="383" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="0.75" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Qj-pd-qIP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Bn8-5N-NIV"/>
+                            <constraint firstItem="6Qj-pd-qIP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="I2l-ak-W5I"/>
+                            <constraint firstItem="OGV-Am-5XK" firstAttribute="top" secondItem="6Qj-pd-qIP" secondAttribute="bottom" id="eZs-8z-bgT"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OGV-Am-5XK" secondAttribute="bottom" id="fCp-F8-fRl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OGV-Am-5XK" secondAttribute="trailing" constant="-20" id="gJ5-BU-rJi"/>
+                            <constraint firstItem="OGV-Am-5XK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="tMY-bK-oCy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6Qj-pd-qIP" secondAttribute="trailing" constant="-20" id="zKs-dN-lK6"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="imageView" destination="OGV-Am-5XK" id="snZ-mL-V6G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="329.5" y="362.5"/>
         </scene>
     </scenes>
 </document>
