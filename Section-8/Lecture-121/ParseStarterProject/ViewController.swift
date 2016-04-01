@@ -77,6 +77,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                         
                         // SignUp successfull
                         
+                        self.username.text = ""
+                        
+                        self.password.text = ""
+                        
+                        self.username.resignFirstResponder()
+                        
+                        self.password.resignFirstResponder()
+                        
                     } else {
                         
                         if let errorString = error!.userInfo["error"] as? String {
@@ -100,8 +108,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     
                     if user != nil {
-                    
-                        // Logged in!
+                        
+                        self.performSegueWithIdentifier("login", sender: self)
                         
                     } else {
                     
@@ -171,49 +179,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         
         super.viewDidLoad()
         
-        /*let product = PFObject(className:"Products")
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
         
-        product["name"] = "Ice cream"
-        
-        product["description"] = "Tutti Fruitti"
-        
-        product["price"] = 4.99
-        
-        product.saveInBackgroundWithBlock {(success: Bool, error: NSError?) -> Void in
+        if PFUser.currentUser() != nil {
             
-            if (success) {
-                
-                print("Object was saved with ID \(product.objectId)")
-                
-            } else {
-                
-                print("Failed: \(error?.localizedDescription)")
-                
-            }
-        }*/
+            self.performSegueWithIdentifier("login", sender: self)
         
-        /*let query = PFQuery(className: "Products")
-        
-        query.getObjectInBackgroundWithId("uFuweBq1Y9") { (object: PFObject?, error: NSError?) -> Void in
-            
-            if error != nil {
-            
-                print("Query error: \(error?.localizedDescription)")
-                
-            } else if let product = object {
-                
-                product["description"] = "Rocky Road"
-                
-                product["price"] = 5.99
-                
-                product.saveInBackground()
-                
-                print(product.objectForKey("description"))
-                
-            }
-            
-        }*/
-        
+        }
     }
     
 }
