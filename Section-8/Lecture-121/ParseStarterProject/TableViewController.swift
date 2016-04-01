@@ -17,11 +17,27 @@ class TableViewController: UITableViewController {
     
     var isFollowing = ["":false]
     
+    var refresher:UIRefreshControl!
+    
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        refresher = UIRefreshControl()
+        
+        refresher.attributedTitle = NSAttributedString(string: "Update Users table")
+        
+        refresher.addTarget(self, action: Selector("refresh"), forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.tableView.addSubview(refresher)
+        
+        self.refresh()
 
+    }
+    
+    
+    func refresh() {
         let query = PFUser.query()
         
         query?.findObjectsInBackgroundWithBlock({ (objects, error) in
@@ -33,9 +49,9 @@ class TableViewController: UITableViewController {
                 self.userids.removeAll(keepCapacity: true)
                 
                 self.isFollowing.removeAll(keepCapacity: true)
-            
-                for object in users {
                 
+                for object in users {
+                    
                     if let user = object as? PFUser {
                         
                         if user.objectId! != PFUser.currentUser()?.objectId {
@@ -49,7 +65,7 @@ class TableViewController: UITableViewController {
                             query.whereKey("follower", equalTo: (PFUser.currentUser()?.objectId)!)
                             
                             query.whereKey("following", equalTo: user.objectId!)
-                        
+                            
                             query.findObjectsInBackgroundWithBlock({ (objects, error) in
                                 
                                 if let objects = objects {
@@ -70,9 +86,12 @@ class TableViewController: UITableViewController {
                                     
                                     self.tableView.reloadData()
                                     
+                                    self.refresher.endRefreshing()
+                                    
                                 }
                                 
                             })
+                            
                         }
                         
                     }
