@@ -182,9 +182,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         
-        if PFUser.currentUser() != nil {
+        if let curentUser = PFUser.currentUser() {
+            
+            print(curentUser)
             
             self.performSegueWithIdentifier("login", sender: self)
         

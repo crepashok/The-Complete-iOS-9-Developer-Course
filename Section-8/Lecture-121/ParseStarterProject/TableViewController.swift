@@ -62,35 +62,39 @@ class TableViewController: UITableViewController {
                             
                             let query = PFQuery(className: "followers")
                             
-                            query.whereKey("follower", equalTo: (PFUser.currentUser()?.objectId)!)
-                            
-                            query.whereKey("following", equalTo: user.objectId!)
-                            
-                            query.findObjectsInBackgroundWithBlock({ (objects, error) in
+                            if let currentUser = PFUser.currentUser()?.objectId {
                                 
-                                if let objects = objects {
+                                query.whereKey("follower", equalTo: currentUser)
+                                
+                                query.whereKey("following", equalTo: user.objectId!)
+                                
+                                query.findObjectsInBackgroundWithBlock({ (objects, error) in
                                     
-                                    if objects.count > 0 {
+                                    if let objects = objects {
                                         
-                                        self.isFollowing[user.objectId!] = true
-                                        
-                                    } else {
-                                        
-                                        self.isFollowing[user.objectId!] = false
+                                        if objects.count > 0 {
+                                            
+                                            self.isFollowing[user.objectId!] = true
+                                            
+                                        } else {
+                                            
+                                            self.isFollowing[user.objectId!] = false
+                                            
+                                        }
                                         
                                     }
                                     
-                                }
+                                    if self.isFollowing.count == self.usernames.count {
+                                        
+                                        self.tableView.reloadData()
+                                        
+                                        self.refresher.endRefreshing()
+                                        
+                                    }
+                                    
+                                })
                                 
-                                if self.isFollowing.count == self.usernames.count {
-                                    
-                                    self.tableView.reloadData()
-                                    
-                                    self.refresher.endRefreshing()
-                                    
-                                }
-                                
-                            })
+                            }
                             
                         }
                         

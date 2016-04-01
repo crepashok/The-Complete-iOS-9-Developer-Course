@@ -10,6 +10,8 @@
 		5FC305C41CAE55AF00D6C4A8 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC305C31CAE55AF00D6C4A8 /* TableViewController.swift */; };
 		5FC305C61CAE764100D6C4A8 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FC305C51CAE764100D6C4A8 /* placeholder.png */; };
 		5FC305C81CAE77F100D6C4A8 /* PostImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC305C71CAE77F100D6C4A8 /* PostImageViewController.swift */; };
+		5FC305CA1CAE84DA00D6C4A8 /* cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC305C91CAE84DA00D6C4A8 /* cell.swift */; };
+		5FC305CC1CAE85CE00D6C4A8 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC305CB1CAE85CE00D6C4A8 /* FeedTableViewController.swift */; };
 		5FC3A9C81CA9C67A00764F54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FC3A9C71CA9C67A00764F54 /* LaunchScreen.storyboard */; };
 		814C3ACA1B69877600E307BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 814C3AC61B69877600E307BB /* Main.storyboard */; };
 		814C3ACB1B69877600E307BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 814C3AC81B69877600E307BB /* Images.xcassets */; };
@@ -27,6 +29,8 @@
 		5FC305C31CAE55AF00D6C4A8 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		5FC305C51CAE764100D6C4A8 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		5FC305C71CAE77F100D6C4A8 /* PostImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostImageViewController.swift; sourceTree = "<group>"; };
+		5FC305C91CAE84DA00D6C4A8 /* cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cell.swift; sourceTree = "<group>"; };
+		5FC305CB1CAE85CE00D6C4A8 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		5FC3A9C71CA9C67A00764F54 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		814C3AC71B69877600E307BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		814C3AC81B69877600E307BB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 				814C3AC61B69877600E307BB /* Main.storyboard */,
 				5FC3A9C71CA9C67A00764F54 /* LaunchScreen.storyboard */,
 				5FC305C71CAE77F100D6C4A8 /* PostImageViewController.swift */,
+				5FC305C91CAE84DA00D6C4A8 /* cell.swift */,
+				5FC305CB1CAE85CE00D6C4A8 /* FeedTableViewController.swift */,
 			);
 			path = ParseStarterProject;
 			sourceTree = "<group>";
@@ -198,8 +204,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FC305C81CAE77F100D6C4A8 /* PostImageViewController.swift in Sources */,
+				5FC305CC1CAE85CE00D6C4A8 /* FeedTableViewController.swift in Sources */,
 				81BA814D1A49DA1800E65899 /* ViewController.swift in Sources */,
 				5FC305C41CAE55AF00D6C4A8 /* TableViewController.swift in Sources */,
+				5FC305CA1CAE84DA00D6C4A8 /* cell.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
