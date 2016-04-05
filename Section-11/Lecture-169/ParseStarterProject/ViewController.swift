@@ -79,7 +79,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         
                     } else {
                         
-                        print("Successful")
+                        self.performSegueWithIdentifier("loginRider", sender: self)
                         
                     }
                     
@@ -91,7 +91,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     
                     if user != nil {
                         
-                        print("Login successfully")
+                        self.performSegueWithIdentifier("loginRider", sender: self)
                         
                     } else {
                         
@@ -164,6 +164,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         
         return false
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        if PFUser.currentUser()?.username != nil {
+            
+            self.performSegueWithIdentifier("loginRider", sender: self)
+        
+        } else {
+        
+        }
+        
     }
     
     
