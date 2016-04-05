@@ -38,10 +38,9 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         
         locationManager.startUpdatingLocation()
-        
     }
     
     
@@ -54,65 +53,142 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
         
         self.longitude = location.longitude
         
-        let query = PFQuery(className:"RiderRequest")
+        print("location = \(location.latitude) \(location.longitude)")
         
-        query.whereKey("location", nearGeoPoint:PFGeoPoint(latitude:location.latitude, longitude:location.longitude))
         
-        query.limit = 15
         
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+        if let username = PFUser.currentUser()?.username{
             
-            if error == nil {
+            var query = PFQuery(className:"DriverLocation")
+            
+            query.whereKey("username", equalTo:username)
+            
+            query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
                 
-                if let objects = objects {
+                if error == nil {
                     
-                    self.usernames.removeAll()
-                    
-                    self.locations.removeAll()
-                    
-                    self.distances.removeAll()
-                    
-                    for object in objects {
+                    if let objects = objects {
                         
-                        if object["driverResponded"] == nil {
+                        if objects.count > 0 {
                             
-                            if let username = object["username"] as? String {
+                            for object in objects {
                                 
-                                self.usernames.append(username)
+                                let updateQuery = PFQuery(className:"DriverLocation")
+                                
+                                updateQuery.getObjectInBackgroundWithId(object.objectId!) { (object: PFObject?, error: NSError?) -> Void in
+                                    
+                                    if error != nil {
+                                        
+                                        print(error?.localizedDescription)
+                                        
+                                    } else if let object = object {
+                                        
+                                        object["driverLocation"] = PFGeoPoint(latitude:location.latitude, longitude:location.longitude)
+                                        
+                                        object.saveInBackground()
+                                        
+                                    }
+                                    
+                                }
                                 
                             }
                             
-                            if let returnedLocation = object["location"] as? PFGeoPoint {
-                                
-                                let requestLocation = CLLocationCoordinate2DMake(returnedLocation.latitude, returnedLocation.longitude)
-                                
-                                self.locations.append(requestLocation)
-                                
-                                let requestCLLocation = CLLocation(latitude: requestLocation.latitude, longitude: requestLocation.longitude)
-                                
-                                let driverCLLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-                                
-                                let distance = driverCLLocation.distanceFromLocation(requestCLLocation)
-                                
-                                self.distances.append(distance/1000)
-                                
-                            }
-                        
+                        } else {
+                            
+                            let driverLocation = PFObject(className:"DriverLocation")
+                            
+                            driverLocation["username"] = username
+                            
+                            driverLocation["driverLocation"] = PFGeoPoint(latitude:location.latitude, longitude:location.longitude)
+                            
+                            driverLocation.saveInBackground()
+                            
                         }
                         
                     }
                     
-                    self.tableView.reloadData()
+                } else {
+                    
+                    print("Error: \(error!) \(error!.userInfo)")
                     
                 }
                 
-            } else {
-                
-                print("Error: \(error!) \(error!.userInfo)")
-                
             }
             
+            
+            query = PFQuery(className:"RiderRequest")
+            
+            query.whereKey("location", nearGeoPoint:PFGeoPoint(latitude:location.latitude, longitude:location.longitude))
+            
+            query.limit = 15
+            
+            query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+                
+                if error == nil {
+                    
+                    if let objects = objects {
+                        
+                        self.usernames.removeAll()
+                        
+                        self.locations.removeAll()
+                        
+                        self.distances.removeAll()
+                        
+                        for object in objects {
+                            
+                            if object["driverResponded"] == nil {
+                                
+                                if let username = object["username"] as? String {
+                                    
+                                    self.usernames.append(username)
+                                    
+                                }
+                                
+                                if let returnedLocation = object["location"] as? PFGeoPoint {
+                                    
+                                    let requestLocation = CLLocationCoordinate2DMake(returnedLocation.latitude, returnedLocation.longitude)
+                                    
+                                    self.locations.append(requestLocation)
+                                    
+                                    let requestCLLocation = CLLocation(latitude: requestLocation.latitude, longitude: requestLocation.longitude)
+                                    
+                                    let driverCLLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+                                    
+                                    let distance = driverCLLocation.distanceFromLocation(requestCLLocation)
+                                    
+                                    self.distances.append(distance/1000)
+                                    
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                        self.tableView.reloadData()
+                        
+                    }
+                    
+                } else {
+                    
+                    print("Error: \(error!) \(error!.userInfo)")
+                    
+                }
+                
+            }
+        
         }
+        
+    }
+    
+    
+    
+    func displayAlertWith(title: String, message: String, actionTitle: String = "Ok") {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        alert.addAction(UIAlertAction(title: actionTitle, style: .Default, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     
@@ -171,5 +247,4 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
         
     }
     
-
 }

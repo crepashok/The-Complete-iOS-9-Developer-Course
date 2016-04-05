@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import Parse
 
+
 class RequestViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var map: MKMapView!
@@ -36,13 +37,6 @@ class RequestViewController: UIViewController, CLLocationManagerDelegate {
         objectAnnotation.title = requestUsername
         
         self.map.addAnnotation(objectAnnotation)
-        
-    }
-    
-    
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
     }
     
     

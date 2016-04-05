@@ -61,7 +61,7 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
             
             query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
                 
-                self.callUberButton.setTitle("Cancel Uber", forState: .Normal)
+                self.callUberButton.setTitle("Call an Uber", forState: .Normal)
                 
                 if error == nil {
                     
@@ -112,6 +112,72 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
         
         longitude = location.longitude
         
+        
+        
+        
+        
+        
+        
+        let query = PFQuery(className:"RiderRequest")
+        
+        query.whereKey("username", equalTo:(PFUser.currentUser()?.username)!)
+        
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                
+                if let objects = objects {
+                    
+                    for object in objects {
+                        
+                        print(object)
+                        
+                        if let driverUsername = object["driverResponded"] {
+                            
+                            self.callUberButton.setTitle("Driver is on the way!", forState: .Normal)
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            let driverLocationQuery = PFQuery(className:"DriverLocation")
+                            
+                            driverLocationQuery.whereKey("username", equalTo:driverUsername)
+                            
+                            driverLocationQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+                                
+                                if error == nil {
+                                    
+                                    if let obj = objects as [PFObject]! {
+                                        
+                                        for object in obj {
+                                            
+                                            if let driverLocation = object["driverLocation"] as? PFGeoPoint {
+                                                
+                                                print(driverLocation)
+                                                
+                                            }
+                                            
+                                        }
+                                        
+                                    }
+                                    
+                                }
+                                
+                            }
+                        
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
         let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
         
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
@@ -131,14 +197,6 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
         objectAnnotation.title = "Your location"
         
         self.map.addAnnotation(objectAnnotation)
-    }
-    
-
-    
-    @IBAction func logOut(sender: UIBarButtonItem) {
-        
-        
-        
     }
     
     
