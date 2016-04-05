@@ -21,21 +21,23 @@ class UserTableViewController: UITableViewController {
         
         query.whereKey("username", notEqualTo: PFUser.currentUser()!.username!)
         
-        do {
+        query.findObjectsInBackgroundWithBlock({ (usersList, error:NSError?) -> Void in
             
-            let users = try query.findObjects()
-            
-            for user in users as! [PFUser] {
+            if error == nil {
                 
-                usernames.append(user.username!)
+                for user in usersList as! [PFUser] {
+                    
+                    self.usernames.append(user.username!)
+                    
+                }
+                
+                self.tableView.reloadData()
+                
+            } else {
                 
             }
             
-            tableView.reloadData()
-        
-        } catch {
-        
-        }
+        })
         
     }
 
