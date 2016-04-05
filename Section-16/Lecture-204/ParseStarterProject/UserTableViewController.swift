@@ -9,9 +9,11 @@
 import UIKit
 import Parse
 
-class UserTableViewController: UITableViewController {
+class UserTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var usernames = [String]()
+    
+    var recipientUsername = ""
 
     override func viewDidLoad() {
 
@@ -41,25 +43,23 @@ class UserTableViewController: UITableViewController {
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
         return 1
+        
     }
+    
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        
         return usernames.count
+        
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
         cell.textLabel?.text = usernames[indexPath.row]
@@ -74,6 +74,50 @@ class UserTableViewController: UITableViewController {
         
             PFUser.logOut()
             
+            
+        }
+    }
+    
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        self.recipientUsername = self.usernames[indexPath.row]
+        
+        let image = UIImagePickerController()
+        
+        image.delegate = self
+        
+        image.sourceType = .PhotoLibrary
+        
+        image.allowsEditing = false
+        
+        self.presentViewController(image, animated: true, completion: nil)
+    }
+    
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        let imageToSend = PFObject(className: "UserImage")
+        
+        imageToSend["photo"] = PFFile(name: "photo.jpe", data: UIImageJPEGRepresentation(image, 0.5)!)
+        
+        imageToSend["sender"] = PFUser.currentUser()?.username
+        
+        imageToSend["recipient"] = self.recipientUsername
+        
+        imageToSend.saveInBackgroundWithBlock { (isSaved, error:NSError?) -> Void in
+            
+            if error == nil {
+            
+                print("Image was succesfully uploaded to Parse")
+                
+            } else {
+            
+                print("Parse upload image error: \(error?.localizedDescription)")
+                
+            }
             
         }
     }
