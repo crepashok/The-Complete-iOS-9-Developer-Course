@@ -10,6 +10,13 @@
 import UIKit
 import Parse
 
+
+let riderSegueID = "loginRider"
+
+let driverSegueID = "loginDriver"
+
+
+
 class ViewController: UIViewController, UITextFieldDelegate {
     
     var signUpState = true
@@ -79,7 +86,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         
                     } else {
                         
-                        self.performSegueWithIdentifier("loginRider", sender: self)
+                        let segue = (self.rolesSwitcher.on) ? driverSegueID : riderSegueID
+                        
+                        self.performSegueWithIdentifier(segue, sender: self)
                         
                     }
                     
@@ -91,7 +100,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     
                     if user != nil {
                         
-                        self.performSegueWithIdentifier("loginRider", sender: self)
+                        if let user = user {
+                            
+                            let segue = (user["isDriver"]! as! Bool == true) ? driverSegueID : riderSegueID
+                            
+                            self.performSegueWithIdentifier(segue, sender: self)
+                        
+                        }
                         
                     } else {
                         
@@ -171,7 +186,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         if PFUser.currentUser()?.username != nil {
             
-            self.performSegueWithIdentifier("loginRider", sender: self)
+            let segue = (PFUser.currentUser()?["isDriver"]! as! Bool == true) ? driverSegueID : riderSegueID
+            
+            self.performSegueWithIdentifier(segue, sender: self)
         
         } else {
         

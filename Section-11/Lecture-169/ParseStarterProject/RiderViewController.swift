@@ -61,11 +61,9 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
             
             query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
                 
-                self.callUberButton.setTitle("Call An Uber", forState: .Normal)
+                self.callUberButton.setTitle("Cancel Uber", forState: .Normal)
                 
                 if error == nil {
-                    
-                    print("Successfully retrieved \(objects!.count) scores.")
                     
                     if let objects = objects {
                         for object in objects {
