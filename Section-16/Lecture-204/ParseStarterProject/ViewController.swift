@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         
         PFUser.logInWithUsernameInBackground(username.text!, password: "password") { (user: PFUser?, error: NSError?) -> Void in
             
-            if let error = error {
+            if let _ = error {
             
                 let user = PFUser()
                 
