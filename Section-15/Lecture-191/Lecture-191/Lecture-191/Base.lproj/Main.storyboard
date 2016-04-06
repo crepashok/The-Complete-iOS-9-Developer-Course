@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Lecture_191" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" adType="mediumRect" translatesAutoresizingMaskIntoConstraints="NO" id="24a-7j-9pr">
+                                <rect key="frame" x="37" y="28" width="300" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="4GK-Dn-ddL"/>
+                                    <constraint firstAttribute="width" constant="300" id="vVQ-MU-cSX"/>
+                                </constraints>
+                            </adBannerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ta6-oI-tJP">
+                                <rect key="frame" x="133" y="303" width="108" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="598-Od-DeV"/>
+                                    <constraint firstAttribute="height" constant="30" id="e8B-jY-Aig"/>
+                                </constraints>
+                                <state key="normal" title="Remove iAds"/>
+                                <connections>
+                                    <action selector="removeAd:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WM5-LQ-OAs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="24a-7j-9pr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BhE-UQ-Yz1"/>
+                            <constraint firstItem="Ta6-oI-tJP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="i95-vo-mwd"/>
+                            <constraint firstItem="24a-7j-9pr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="q1P-iy-rJd"/>
+                            <constraint firstItem="Ta6-oI-tJP" firstAttribute="top" secondItem="24a-7j-9pr" secondAttribute="bottom" constant="25" id="sDQ-HG-b5R"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="adBanner" destination="24a-7j-9pr" id="R7w-J7-R5w"/>
+                        <outlet property="removeButton" destination="Ta6-oI-tJP" id="OhS-JU-yGt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="505.5" y="450.5"/>
+        </scene>
+    </scenes>
+</document>
