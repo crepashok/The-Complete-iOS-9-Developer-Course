@@ -36,5 +36,34 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>sdda</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>message</key>
+				<string>Empty message</string>
+			</dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>CretsuDev.Lecture-197.playMusic</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Write New Message</string>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeMessage</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>username</key>
+				<string>Pasha</string>
+			</dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>CretsuDev.Lecture-197.playMusic</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Play Some Music</string>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeAudio</string>
+		</dict>
+	</array>
 </dict>
 </plist>

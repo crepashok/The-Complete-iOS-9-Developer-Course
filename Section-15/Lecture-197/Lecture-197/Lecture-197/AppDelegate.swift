@@ -40,6 +40,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+        
+        print("Shortcut Item Tapped")
+        
+        if shortcutItem.type == "CretsuDev.Lecture-197.playMusic" {
+        
+            print("Play music was tapped")
+            
+        }
+        
+    }
 
 
 }
