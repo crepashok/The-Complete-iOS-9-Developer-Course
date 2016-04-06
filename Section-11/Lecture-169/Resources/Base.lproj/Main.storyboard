@@ -163,17 +163,6 @@
                                     <constraint firstAttribute="height" constant="300" id="DTW-f1-rqT"/>
                                 </constraints>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98X-Ip-aAf">
-                                <rect key="frame" x="110" y="372" width="154" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="154" id="Fv5-Fu-dU8"/>
-                                    <constraint firstAttribute="height" constant="35" id="Kwe-sB-evk"/>
-                                </constraints>
-                                <state key="normal" title="Call An Uber"/>
-                                <connections>
-                                    <action selector="callUber:" destination="pw4-rz-MsM" eventType="touchUpInside" id="aCy-Wl-Sx0"/>
-                                </connections>
-                            </button>
                             <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQT-A5-6gq">
                                 <rect key="frame" x="-4" y="0.0" width="383" height="20"/>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
@@ -198,6 +187,17 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98X-Ip-aAf">
+                                <rect key="frame" x="77" y="372" width="220" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="Fv5-Fu-dU8"/>
+                                    <constraint firstAttribute="height" constant="35" id="Kwe-sB-evk"/>
+                                </constraints>
+                                <state key="normal" title="Call An Uber"/>
+                                <connections>
+                                    <action selector="callUber:" destination="pw4-rz-MsM" eventType="touchUpInside" id="aCy-Wl-Sx0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

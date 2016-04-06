@@ -21,6 +21,8 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
     
     var riderRequestActive = false
     
+    var driverOnTheWay = false
+    
     
     @IBOutlet weak var map: MKMapView!
     
@@ -112,51 +114,92 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
         
         longitude = location.longitude
         
-        
-        
-        
-        
-        
-        
-        let query = PFQuery(className:"RiderRequest")
-        
-        query.whereKey("username", equalTo:(PFUser.currentUser()?.username)!)
-        
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+        if let currentUserLogin = PFUser.currentUser()?.username {
             
-            if error == nil {
+            let query = PFQuery(className:"RiderRequest")
+            
+            query.whereKey("username", equalTo:currentUserLogin)
+            
+            query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
                 
-                if let objects = objects {
+                if error == nil {
                     
-                    for object in objects {
+                    if let objects = objects {
                         
-                        print(object)
-                        
-                        if let driverUsername = object["driverResponded"] {
+                        for object in objects {
                             
-                            self.callUberButton.setTitle("Driver is on the way!", forState: .Normal)
+                            print(object)
                             
-                            
-                            
-                            
-                            
-                            
-                            
-                            let driverLocationQuery = PFQuery(className:"DriverLocation")
-                            
-                            driverLocationQuery.whereKey("username", equalTo:driverUsername)
-                            
-                            driverLocationQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+                            if let driverUsername = object["driverResponded"] {
                                 
-                                if error == nil {
+                                let driverLocationQuery = PFQuery(className:"DriverLocation")
+                                
+                                driverLocationQuery.whereKey("username", equalTo:driverUsername)
+                                
+                                driverLocationQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
                                     
-                                    if let obj = objects as [PFObject]! {
+                                    if error == nil {
                                         
-                                        for object in obj {
+                                        if let obj = objects as [PFObject]! {
                                             
-                                            if let driverLocation = object["driverLocation"] as? PFGeoPoint {
+                                            for object in obj {
                                                 
-                                                print(driverLocation)
+                                                if let driverLocation = object["driverLocation"] as? PFGeoPoint {
+                                                    
+                                                    let driverCLLocation = CLLocation(latitude: driverLocation.latitude, longitude: driverLocation.longitude)
+                                                    
+                                                    let userCLLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+                                                    
+                                                    let distanceMeters = userCLLocation.distanceFromLocation(driverCLLocation)
+                                                    
+                                                    let distanceKM = distanceMeters / 1000
+                                                    
+                                                    let roundedTwoDigitDistance = Double(round(distanceKM * 10) / 10)
+                                                    
+                                                    self.callUberButton.setTitle("Driver is \(roundedTwoDigitDistance)km away!", forState: .Normal)
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    self.driverOnTheWay = true
+                                                    
+                                                    
+                                                    
+                                                    let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+                                                    
+                                                    let latDelta = abs(driverLocation.latitude - location.latitude) * 2 + 0.001
+                                                    
+                                                    let lonDelta = abs(driverLocation.longitude - location.longitude) * 2 + 0.001
+                                                    
+                                                    let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lonDelta))
+                                                    
+                                                    self.map.setRegion(region, animated: true)
+                                                    
+                                                    
+                                                    self.map.removeAnnotations(self.map.annotations)
+                                                    
+                                                    
+                                                    var pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.latitude, location.longitude)
+                                                    
+                                                    var objectAnnotation = MKPointAnnotation()
+                                                    
+                                                    objectAnnotation.coordinate = pinLocation
+                                                    
+                                                    objectAnnotation.title = "Your location"
+                                                    
+                                                    self.map.addAnnotation(objectAnnotation)
+                                                    
+                                                    
+                                                    pinLocation = CLLocationCoordinate2DMake(driverLocation.latitude, driverLocation.longitude)
+                                                    
+                                                    objectAnnotation = MKPointAnnotation()
+                                                    
+                                                    objectAnnotation.coordinate = pinLocation
+                                                    
+                                                    objectAnnotation.title = "Driver location"
+                                                    
+                                                    self.map.addAnnotation(objectAnnotation)
+                                                }
                                                 
                                             }
                                             
@@ -167,7 +210,7 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
                                 }
                                 
                             }
-                        
+                            
                         }
                         
                     }
@@ -176,27 +219,31 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
                 
             }
             
+            if self.driverOnTheWay == false {
+            
+                let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+                
+                let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+                
+                self.map.setRegion(region, animated: true)
+                
+                
+                map.removeAnnotations(map.annotations)
+                
+                
+                let pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.latitude, location.longitude)
+                
+                let objectAnnotation = MKPointAnnotation()
+                
+                objectAnnotation.coordinate = pinLocation
+                
+                objectAnnotation.title = "Your location"
+                
+                self.map.addAnnotation(objectAnnotation)
+            }
+        
         }
         
-        let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-        
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
-        self.map.setRegion(region, animated: true)
-        
-        
-        map.removeAnnotations(map.annotations)
-        
-        
-        let pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.latitude, location.longitude)
-        
-        let objectAnnotation = MKPointAnnotation()
-        
-        objectAnnotation.coordinate = pinLocation
-        
-        objectAnnotation.title = "Your location"
-        
-        self.map.addAnnotation(objectAnnotation)
     }
     
     

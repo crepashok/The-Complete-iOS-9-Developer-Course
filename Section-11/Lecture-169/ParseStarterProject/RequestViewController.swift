@@ -43,65 +43,69 @@ class RequestViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func pickUpRider(sender: UIButton) {
         
-        let query = PFQuery(className:"RiderRequest")
-        
-        query.whereKey("username", equalTo:requestUsername)
-        
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+        if let currentUsername = PFUser.currentUser()?.username {
             
-            if error == nil {
+            let query = PFQuery(className:"RiderRequest")
+            
+            query.whereKey("username", equalTo:requestUsername)
+            
+            query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
                 
-                if let objects = objects {
+                if error == nil {
                     
-                    for object in objects {
+                    if let objects = objects {
                         
-                        let updateQuery = PFQuery(className:"RiderRequest")
-                        
-                        updateQuery.getObjectInBackgroundWithId(object.objectId!) { (object: PFObject?, error: NSError?) -> Void in
+                        for object in objects {
                             
-                            if error != nil {
+                            let updateQuery = PFQuery(className:"RiderRequest")
+                            
+                            updateQuery.getObjectInBackgroundWithId(object.objectId!) { (object: PFObject?, riderError: NSError?) -> Void in
                                 
-                                print(error?.localizedDescription)
-                                
-                            } else if let object = object {
-                                
-                                object["driverResponded"] = PFUser.currentUser()!.username!
-                                
-                                object.saveInBackground()
-                                
-                                let requestCLLocation = CLLocation(latitude: self.requestLocation.latitude, longitude: self.requestLocation.longitude)
-                                
-                                CLGeocoder().reverseGeocodeLocation(requestCLLocation, completionHandler: { (placemarks, error) -> Void in
+                                if let newRiderError = riderError {
                                     
-                                    if error != nil {
-                                        
-                                        print("Reverse geocoder failed with error: \(error?.localizedDescription)")
-                                        
-                                    } else {
+                                    print(newRiderError.localizedDescription)
                                     
-                                        if placemarks!.count > 0 {
-                                        
-                                            let pm = placemarks![0] as! CLPlacemark
-                                            
-                                            let mkPm = MKPlacemark(placemark: pm)
-                                            
-                                            let mapItem = MKMapItem(placemark: mkPm)
-                                            
-                                            mapItem.name = self.requestUsername
-                                            
-                                            let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
-                                            
-                                            mapItem.openInMapsWithLaunchOptions(launchOptions)
+                                } else if let object = object {
                                     
+                                    object["driverResponded"] = currentUsername
+                                    
+                                    object.saveInBackground()
+                                    
+                                    let requestCLLocation = CLLocation(latitude: self.requestLocation.latitude, longitude: self.requestLocation.longitude)
+                                    
+                                    CLGeocoder().reverseGeocodeLocation(requestCLLocation, completionHandler: { (placemarks, error) -> Void in
+                                        
+                                        if error != nil {
+                                            
+                                            print("Reverse geocoder failed with error: \(error?.localizedDescription)")
+                                            
                                         } else {
-                                        
-                                            print("Problem with the data received from geocoder")
+                                            
+                                            if placemarks!.count > 0 {
+                                                
+                                                let pm = placemarks![0] as! CLPlacemark
+                                                
+                                                let mkPm = MKPlacemark(placemark: pm)
+                                                
+                                                let mapItem = MKMapItem(placemark: mkPm)
+                                                
+                                                mapItem.name = self.requestUsername
+                                                
+                                                let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+                                                
+                                                mapItem.openInMapsWithLaunchOptions(launchOptions)
+                                                
+                                            } else {
+                                                
+                                                print("Problem with the data received from geocoder")
+                                                
+                                            }
                                             
                                         }
                                         
-                                    }
+                                    })
                                     
-                                })
+                                }
                                 
                             }
                             
@@ -109,14 +113,14 @@ class RequestViewController: UIViewController, CLLocationManagerDelegate {
                         
                     }
                     
+                } else {
+                    
+                    print("Error: \(error!) \(error!.userInfo)")
+                    
                 }
                 
-            } else {
-                
-                print("Error: \(error!) \(error!.userInfo)")
-                
             }
-            
+        
         }
         
     }
