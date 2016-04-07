@@ -48,9 +48,7 @@ class GameScene: SKScene {
         // Adding animated bird
         let birdTexture1 = SKTexture(imageNamed: "flappy1.png")
         
-        let birdTexture2 = SKTexture(imageNamed: "flappy2.png")
-        
-        let animation = SKAction.animateWithTextures([birdTexture1, birdTexture2], timePerFrame: 0.1)
+        let animation = SKAction.animateWithTextures([birdTexture1, SKTexture(imageNamed: "flappy2.png")], timePerFrame: 0.2)
         
         let makeBirdFlap = SKAction.repeatActionForever(animation)
         
