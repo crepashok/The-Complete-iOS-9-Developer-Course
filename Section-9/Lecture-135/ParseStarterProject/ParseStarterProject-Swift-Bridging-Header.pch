@@ -1,0 +1,13 @@
+//
+//  ParseStarterProject-Swift-Bridging-Header.pch
+//  ParseStarterProject-Swift
+//
+//  Created by Pavlo Cretsu on 4/6/16.
+//  Copyright © 2016 Parse. All rights reserved.
+//
+
+#ifndef ParseStarterProject_Swift_Bridging_Header_pch
+#define ParseStarterProject_Swift_Bridging_Header_pch
+
+
+#endif /* ParseStarterProject_Swift_Bridging_Header_pch */
