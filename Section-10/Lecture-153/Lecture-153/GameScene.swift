@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     var bird = SKSpriteNode()
@@ -19,8 +19,20 @@ class GameScene: SKScene {
     
     var pipe2 = SKSpriteNode()
     
+    enum ColliderType: UInt32 {
+    
+        case Bird = 1
+        
+        case Object = 2
+        
+    }
+    
+    var gameOver = false
+    
     
     override func didMoveToView(view: SKView) {
+        
+        self.physicsWorld.contactDelegate = self
         
         // Adding animated background
         let bgTexture = SKTexture(imageNamed: "bg.png")
@@ -62,6 +74,12 @@ class GameScene: SKScene {
         
         bird.physicsBody!.dynamic = true
         
+        bird.physicsBody!.categoryBitMask = ColliderType.Bird.rawValue
+        
+        bird.physicsBody!.contactTestBitMask = ColliderType.Object.rawValue
+        
+        bird.physicsBody!.collisionBitMask = ColliderType.Object.rawValue
+        
         bird.runAction(makeBirdFlap)
         
         bird.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
@@ -78,6 +96,12 @@ class GameScene: SKScene {
         ground.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.size.width, 1))
         
         ground.physicsBody!.dynamic = false
+        
+        ground.physicsBody!.categoryBitMask = ColliderType.Object.rawValue
+        
+        ground.physicsBody!.contactTestBitMask = ColliderType.Object.rawValue
+        
+        ground.physicsBody!.collisionBitMask = ColliderType.Object.rawValue
         
         self.addChild(ground)
         
@@ -110,6 +134,16 @@ class GameScene: SKScene {
         
         pipe1.runAction(moveAndRemovePipes)
         
+        pipe1.physicsBody = SKPhysicsBody(rectangleOfSize: pipeTexture.size())
+        
+        pipe1.physicsBody!.categoryBitMask = ColliderType.Object.rawValue
+        
+        pipe1.physicsBody!.contactTestBitMask = ColliderType.Object.rawValue
+        
+        pipe1.physicsBody!.collisionBitMask = ColliderType.Object.rawValue
+        
+        pipe1.physicsBody!.dynamic = false
+        
         self.addChild(pipe1)
         
         
@@ -122,7 +156,26 @@ class GameScene: SKScene {
         
         pipe2.runAction(moveAndRemovePipes)
         
+        pipe2.physicsBody = SKPhysicsBody(rectangleOfSize: pipeTexture.size())
+        
+        pipe2.physicsBody!.categoryBitMask = ColliderType.Object.rawValue
+        
+        pipe2.physicsBody!.contactTestBitMask = ColliderType.Object.rawValue
+        
+        pipe2.physicsBody!.collisionBitMask = ColliderType.Object.rawValue
+        
+        pipe2.physicsBody!.dynamic = false
+        
         self.addChild(pipe2)
+        
+    }
+    
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+        
+        gameOver = true
+        
+        self.speed = 0
         
     }
     
@@ -130,9 +183,13 @@ class GameScene: SKScene {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
-        bird.physicsBody!.velocity = CGVectorMake(0, 0)
+        if gameOver == false {
+            
+            bird.physicsBody!.velocity = CGVectorMake(0, 0)
+            
+            bird.physicsBody!.applyImpulse(CGVectorMake(0, 50))
         
-        bird.physicsBody!.applyImpulse(CGVectorMake(0, 50))
+        }
         
     }
    
