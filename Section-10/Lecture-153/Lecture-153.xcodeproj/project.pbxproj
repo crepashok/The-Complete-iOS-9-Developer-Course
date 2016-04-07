@@ -14,6 +14,11 @@
 		5F9C4B9F1CB6A9CF00B8A8F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C4B9D1CB6A9CF00B8A8F8 /* Main.storyboard */; };
 		5F9C4BA11CB6A9CF00B8A8F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C4BA01CB6A9CF00B8A8F8 /* Assets.xcassets */; };
 		5F9C4BA41CB6A9CF00B8A8F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C4BA21CB6A9CF00B8A8F8 /* LaunchScreen.storyboard */; };
+		5F9C4BB31CB6AB6800B8A8F8 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C4BAE1CB6AB6800B8A8F8 /* bg.png */; };
+		5F9C4BB41CB6AB6800B8A8F8 /* flappy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C4BAF1CB6AB6800B8A8F8 /* flappy1.png */; };
+		5F9C4BB51CB6AB6800B8A8F8 /* flappy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C4BB01CB6AB6800B8A8F8 /* flappy2.png */; };
+		5F9C4BB61CB6AB6800B8A8F8 /* pipe1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C4BB11CB6AB6800B8A8F8 /* pipe1.png */; };
+		5F9C4BB71CB6AB6800B8A8F8 /* pipe2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C4BB21CB6AB6800B8A8F8 /* pipe2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,11 @@
 		5F9C4BA01CB6A9CF00B8A8F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F9C4BA31CB6A9CF00B8A8F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F9C4BA51CB6A9CF00B8A8F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F9C4BAE1CB6AB6800B8A8F8 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = images/bg.png; sourceTree = "<group>"; };
+		5F9C4BAF1CB6AB6800B8A8F8 /* flappy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flappy1.png; path = images/flappy1.png; sourceTree = "<group>"; };
+		5F9C4BB01CB6AB6800B8A8F8 /* flappy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flappy2.png; path = images/flappy2.png; sourceTree = "<group>"; };
+		5F9C4BB11CB6AB6800B8A8F8 /* pipe1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pipe1.png; path = images/pipe1.png; sourceTree = "<group>"; };
+		5F9C4BB21CB6AB6800B8A8F8 /* pipe2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pipe2.png; path = images/pipe2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +68,7 @@
 		5F9C4B941CB6A9CF00B8A8F8 /* Lecture-153 */ = {
 			isa = PBXGroup;
 			children = (
+				5F9C4BAD1CB6AB5A00B8A8F8 /* images */,
 				5F9C4B951CB6A9CF00B8A8F8 /* AppDelegate.swift */,
 				5F9C4B971CB6A9CF00B8A8F8 /* GameScene.sks */,
 				5F9C4B991CB6A9CF00B8A8F8 /* GameScene.swift */,
@@ -68,6 +79,18 @@
 				5F9C4BA51CB6A9CF00B8A8F8 /* Info.plist */,
 			);
 			path = "Lecture-153";
+			sourceTree = "<group>";
+		};
+		5F9C4BAD1CB6AB5A00B8A8F8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				5F9C4BAE1CB6AB6800B8A8F8 /* bg.png */,
+				5F9C4BAF1CB6AB6800B8A8F8 /* flappy1.png */,
+				5F9C4BB01CB6AB6800B8A8F8 /* flappy2.png */,
+				5F9C4BB11CB6AB6800B8A8F8 /* pipe1.png */,
+				5F9C4BB21CB6AB6800B8A8F8 /* pipe2.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,7 +152,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F9C4B981CB6A9CF00B8A8F8 /* GameScene.sks in Resources */,
+				5F9C4BB31CB6AB6800B8A8F8 /* bg.png in Resources */,
 				5F9C4BA41CB6A9CF00B8A8F8 /* LaunchScreen.storyboard in Resources */,
+				5F9C4BB71CB6AB6800B8A8F8 /* pipe2.png in Resources */,
+				5F9C4BB51CB6AB6800B8A8F8 /* flappy2.png in Resources */,
+				5F9C4BB61CB6AB6800B8A8F8 /* pipe1.png in Resources */,
+				5F9C4BB41CB6AB6800B8A8F8 /* flappy1.png in Resources */,
 				5F9C4BA11CB6A9CF00B8A8F8 /* Assets.xcassets in Resources */,
 				5F9C4B9F1CB6A9CF00B8A8F8 /* Main.storyboard in Resources */,
 			);
