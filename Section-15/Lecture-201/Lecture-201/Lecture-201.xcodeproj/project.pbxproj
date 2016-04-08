@@ -100,6 +100,7 @@
 				TargetAttributes = {
 					5F04A18A1CB508790090F44C = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 7F3B2V59AW;
 					};
 				};
 			};
@@ -251,10 +252,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Aljoscha Gielkens (DC7933Q9XA)";
 				INFOPLIST_FILE = "Lecture-201/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "CretsuDev.Lecture-201";
+				PRODUCT_BUNDLE_IDENTIFIER = com.qlicks.push;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f2e03223-6c1e-4977-86e0-c2f1601d3e9e";
 			};
 			name = Debug;
 		};
@@ -262,10 +265,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Aljoscha Gielkens (DC7933Q9XA)";
 				INFOPLIST_FILE = "Lecture-201/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "CretsuDev.Lecture-201";
+				PRODUCT_BUNDLE_IDENTIFIER = com.qlicks.push;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f2e03223-6c1e-4977-86e0-c2f1601d3e9e";
 			};
 			name = Release;
 		};
@@ -288,6 +293,7 @@
 				5F04A19F1CB508790090F44C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
