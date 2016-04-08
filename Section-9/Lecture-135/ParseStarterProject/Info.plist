@@ -35,6 +35,7 @@
 	<string>Tinder</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>fbauth2</string>
 		<string>fbauth</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
@@ -55,8 +56,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

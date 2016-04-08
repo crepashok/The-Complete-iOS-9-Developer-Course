@@ -14,6 +14,24 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        PFUser.logOut()
+        
+        if let username = PFUser.currentUser()?.username {
+        
+            self.performSegueWithIdentifier("showSignInScreen", sender: self)
+            
+        }
+        
+    }
+    
+    
+    @IBAction func signIn(sender: AnyObject) {
+        
         let permissions = ["public_profile"]
         
         
@@ -34,20 +52,10 @@ class ViewController: UIViewController {
                     
                 }
                 
-                
-                
             }
-            
-            
             
         })
         
-       
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
